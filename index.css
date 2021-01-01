@@ -87,7 +87,7 @@ h2{
     }
 
     .topnav{
-        margin: 60px 20px 0px 20px;
+        margin: 40px 20px 0px 20px;
         padding: 10px 0px 60px 0px;
         position: static;
         text-align: left;
@@ -106,7 +106,7 @@ h2{
     }
 
     .container{
-        margin: 70px 20px 0 20px;
+        margin: 50px 20px 0 20px;
         padding: 10px 10px 90px 10px;
         color:black;
         float:left;
@@ -129,8 +129,12 @@ h2{
     }
 
     .footerlinks{
-        margin: 440px 20px 0 20px;
-        padding: 10px 5px 10px 5px;
+        margin: 20% 15% 0% 15%;
+        padding: 2.5% ;
+        position: absolute;
+        bottom: 7%;
+        width: 70%;
+        height: 2.5rem;
     }
 
     .footerlinks ul {
@@ -150,7 +154,7 @@ h2{
     .footerlinks a{
         font-family: 'PT Mono', monospace;
         color:black;
-        font-size: 17px;
+        font-size: 15px;
         text-decoration: none;
     }
 
