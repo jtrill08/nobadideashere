@@ -1,0 +1,195 @@
+body{
+    background-color:white;
+}
+html{
+    height: 100vh;
+}
+
+.topnav{
+    margin: 2.5% 2.5% 2.5% 2.5%;
+    padding: 10px 0px 20px 0px;
+    position: static;
+    text-align: left;
+    
+}
+
+.topnav a{
+    font-family: 'PT Mono', monospace;
+    color: rgb(0, 0, 0);
+    font-size:40px;
+    text-decoration: none;
+
+}
+
+.signup{
+    margin: auto;
+    padding:7% 5% 2.5% 35%;
+    width: 65%;
+    
+  }
+
+h2{
+    display:block;
+    font-family: 'PT Mono', monospace;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.email-title{
+    display:block;
+    font-family: 'PT Mono', monospace;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+
+}
+
+input[type=email]{
+    display:block;
+    width:50%;
+    margin:auto%;
+    padding:1%;
+}
+
+input[type=submit] {
+    display:block;
+    margin:3% 0 0 20%;
+    font-family: 'PT Mono', monospace;
+    background-color: whitesmoke;
+    padding:8px;
+
+}
+
+input[type=subscribe]{
+    display:block;
+    margin:5% 0 0 20%;
+    font-family: 'PT Mono', monospace;  
+
+}
+
+
+
+.footerlinks{
+    margin: 5% 15% 0% 12%;
+    padding: 2.5% ;
+    position: absolute;
+    bottom: 7%;
+    width: 70%;
+    height: 2.5rem;
+}
+
+.footerlinks ul {
+    padding: 0 0 0 7%;
+    text-align: center;
+
+
+}
+
+.footerlinks li{
+    display:inline-block;
+    padding: 10px 10% 0 3%;
+    
+   
+}
+
+.footerlinks a{
+    font-family: 'PT Mono', monospace;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+
+    html{
+        height: 100vh;
+        width: auto;
+    }
+    body{
+        background-color: white;
+    }
+
+    .topnav{
+        margin: 40px 20px 0px 20px;
+        padding: 10px 0px 60px 0px;
+        position: static;
+        text-align: left;
+        
+    }
+
+    .topnav a{
+        font-family: 'PT Mono', monospace;
+        color: black;
+        font-size:20px;
+        text-decoration: none;
+    }
+    .signup{
+        margin: auto;
+        padding:10% 5% 2.5% 10%;
+        width: 65%;
+        
+      }
+
+    .email-title{
+        display:block;
+        font-family: 'PT Mono', monospace;
+        color: black;
+        font-size: 20px;
+        text-decoration: none;
+    
+    }
+    
+    input[type=email]{
+        display:block;
+        width:100%;
+        margin:auto 5% 5% auto;
+        padding:0 0px 5px 0px;
+    }
+    
+    input[type=submit] {
+        display:block;
+        margin:auto;
+        font-family: 'PT Mono', monospace;
+        background-color: whitesmoke;
+        padding:6px;
+    
+    }
+    
+    input[type=subscribe]{
+        display:block;
+        margin:5% 0 0 20%;
+        font-family: 'PT Mono', monospace;  
+    
+    }
+
+    .footerlinks{
+        margin: 20% 15% 0% 15%;
+        padding: 2.5% ;
+        position: absolute;
+        bottom: 7%;
+        width: 70%;
+        height: 2.5rem;
+    }
+
+    .footerlinks ul {
+        padding: 0px;
+        text-align: center;
+
+
+    }
+
+    .footerlinks li{
+        display:inline-block;
+        padding: 5px;
+        
+       
+    }
+
+    .footerlinks a{
+        font-family: 'PT Mono', monospace;
+        color:black;
+        font-size: 15px;
+        text-decoration: none;
+    }
