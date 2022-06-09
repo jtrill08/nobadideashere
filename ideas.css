@@ -20,7 +20,6 @@ html{
     text-decoration: none;
 
 }
-
 .wayr{
     margin: 10%;
     align-items: center;
@@ -30,14 +29,14 @@ html{
     align-items: center;
 }
 
-#WAYR-Game{
+#WAYR-game{
     background-color: rgb(255, 86, 86);
     width: fit-content;
     color: white;
     padding: 3px
  
 }
-  .game img{
+  .game{
       height: 100px;
       width: 100px;
 
