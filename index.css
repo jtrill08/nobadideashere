@@ -27,7 +27,7 @@ body{
 .container{
     margin: 4% 2.5% 2.5% 2.5%;
     color:pink;
-    padding: 2.0% 5% 50px 35%;
+    padding: 2.0% 5% 50px 40%;
 
 }
 
@@ -35,14 +35,14 @@ h1{
     text-align: right;
     font-family: 'PT Mono', monospace;
     color: rgb(0, 0, 0);
-    font-size:60px;
+    font-size:50px;
 }
 
 h2{
     text-align: right;
     font-family: 'PT Mono', monospace;
     color: rgb(0, 0, 0);
-    font-size:40px;
+    font-size:30px;
 }
 
 .footerlinks{
@@ -106,7 +106,7 @@ h2{
     }
 
     .container{
-        margin: 50px 20px 0 20px;
+        margin: 45px 20px 0 20px;
         padding: 10px 10px 90px 10px;
         color:black;
         float:left;
