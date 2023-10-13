@@ -2,7 +2,6 @@ const factContainer = document.getElementById('fact-container');
 const categoryButtons = document.querySelectorAll('.category-button');
 let filterCategory = null; // Initialize with no filter
 let isLoadingFacts = false;
-
 const facts = [];
 let currentFactIndex = 0;
 const factsPerPage = 10; // Number of facts to load at once
