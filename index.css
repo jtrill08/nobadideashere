@@ -1,329 +1,161 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+html{
+    height: 100vh;
+}
+body{
+    background-color: whitesmoke;
     margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(
-        to top,
-        #b4e2ff 0%,
-        #f0f0f0 30%,
-        #f0f0f0 70%,
-        #b4e2ff 100%
-    );
 }
 
-/* Updated styles for the header layout */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    padding: 2vh;
-    margin: 0 2vh;
-}
-
-.left-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 4vh;
-}
-
-.left-header a {
-    margin: 0; /* Remove the default margin on the <a> element */
-    text-decoration: none;
-    color: white; /* Link color */
-}
-
-.center-header {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.center-header h1 {
-    font-size: 5vh;
-    font-weight: 300;
-    font-family: 'PT Mono', monospace;
-}
-
-.right-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 4vh;
-}
-
-.right-header a {
-    text-decoration: none;
-    color: white; /* Link color */
-}
-
-/* Your existing styles for the projects and slogan */
-
-
-.projects {
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.05) 2%, transparent 2%),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 2%, transparent 2%);
-    background-size: 30px 30px;
-    width: 100vh;
-    border-radius: 20%;
-    height: 70vh; /* Adjusted the height to make it centered */
-    margin: 0 auto; /* Center horizontally */
-    display: flex;
-    border: 0.5vh solid white;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-
-.ideas-list {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.idea-title {
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden;
-    display: inline-block;
-    margin: 2vh 0 2vh 0;
-}
-
-.idea-title a {
-    color: black;
-}
-
-
-.idea-icon {
-    width: 11vh; /* Adjust the width as needed */
-    height: 11vh; /* Adjust the height as needed */
-    display: block;
-    margin: 0 auto; /* Center the image horizontally */
-}
-#project2 .idea-icon {
-    width: 14vh;
-    height: 14vh;
-}
-
-.tape {
-    content: "";
-    position: absolute;
-    bottom: 17vh;
-    left: 30px;
-    width: 30%;
-    height: 15px; /* Adjust the height as needed */
-    background-color: rgb(88, 88, 88); /* Choose the desired color for the tape */
-    z-index: 1; /* Position it in front of the image */
-  }
-
-  #project2 .tape{
-    content: "";
-    position: absolute;
-    bottom: 19vh;
-    left: 10vh;
-    width: 30%;
-    height: 15px; /* Adjust the height as needed */
-    background-color: rgb(88, 88, 88); /* Choose the desired color for the tape */
-    z-index: 1; /* Position it in front of the image */
-  }
-
-.category {
+.topnav{
+    margin: 2.5% 2.5% 2.5% 2.5%;
+    padding: 10px 0px 20px 0px;
+    position: static;
     text-align: left;
-    padding: 5px 10px; /* Add padding to create a background only behind the text */
-    display: inline-block;
+    
 }
 
-/* Define the specific positions of each project using random values */
-#project1 {
-    top: 5%;
-    right: 35%;
+.topnav a{
+    font-family: 'PT Mono', monospace;
+    color: rgb(0, 0, 0);
+    font-size:40px;
+    font-weight: bold;
+    text-decoration: none;
+
 }
 
-#project2 {
-    top: 10%;
-    right: 25%;
+.container{
+    margin: 4% 2.5% 2.5% 2.5%;
+    color:pink;
+    padding: 2.0% 5% 50px 40%;
+
 }
 
-
-#project3 {
-    bottom: 30%;
-    left: 10%;
-}
-
-
-/* Your existing styles */
-
-.slogan {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Vertically center elements */
-    color: white; /* Text color */
-    overflow: hidden;
-    margin: 0 1.5vh;
-}
-
-.slogan p{
-    font-size: 5vh;
-    font-weight: 400;
-}
-
-
-
-
-  
-  /* Your existing styles */
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    padding: 10px;
-}
-
-.left-footer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.right-footer {
+h1{
     text-align: right;
+    font-family: 'PT Mono', monospace;
+    color: rgb(0, 0, 0);
+    font-size:50px;
 }
 
-.scrolling-banner-footer {
-    animation: scrollTextFooter 10s linear infinite;
+h2{
+    text-align: right;
+    font-family: 'PT Mono', monospace;
+    color: rgb(0, 0, 0);
+    font-size:30px;
 }
 
-@keyframes scrollTextFooter {
-    0% {
-        transform: translateX(80%);
-    }
-    100% {
-        transform: translateX(-80%);
-    }
+.footerlinks{
+    margin: 20% 15% 0% 15%;
+    padding: 2.5% ;
+    position: absolute;
+    bottom: 7%;
+    width: 70%;
+    height: 2.5rem;
 }
 
-.slogan {
-    overflow: hidden; /* Hide the overflow of the slogans */
-    white-space: nowrap; /* Prevent slogans from wrapping to the next line */
-}
+.footerlinks ul {
+    padding: 0 0 0 0;
+    text-align: center;
 
-.slogan p {
-    display: inline-block; /* Display the slogans in a single line */
-    padding-right: 50px; /* Add space between slogans */
-    animation: scrollSlogans 20s linear infinite;
 
 }
 
-@keyframes scrollSlogans {
-    0% {
-        transform: translateX(100%); /* Start from the right side */
-    }
-    100% {
-        transform: translateX(-100%); /* Scroll to the left side */
-    }
+.footerlinks li{
+    display:inline-block;
+    padding: 0px 10% 0 2%;
+    
+   
+}
+
+.footerlinks a{
+    font-family: 'PT Mono', monospace;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-decoration: none;
 }
 
 
-/* Media query for screens with a maximum width of 768px */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
+/* For mobile phones: */
+@media only screen and (max-width: 600px) {
+
+    html{
+        height: 100vh;
+    }
+    body{
+        background-color: whitesmoke;
     }
 
-    .center-header {
-        order: 1;
+    .topnav{
+        margin: 40px 20px 0px 20px;
+        padding: 10px 0px 60px 0px;
+        position: static;
+        text-align: left;
+        
     }
 
-    .left-header, .right-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .topnav a{
+        font-family: 'PT Mono', monospace;
+        color: black;
+        font-size:20px;
+        text-decoration: none;
+        
+
+        
+
+    }
+
+    .container{
+        margin: 45px 20px 0 20px;
+        padding: 10px 10px 90px 10px;
+        color:black;
+        float:left;
+        display:block;
+
+    }
+
+    h1{
+        text-align: right;
+        font-family: 'PT Mono', monospace;
+        color:black;
+        font-size:35px;
+    }
+
+    h2{
+        text-align: right;
+        font-family: 'PT Mono', monospace;
+        color:black;
+        font-size:20px;
+    }
+
+    .footerlinks{
+        margin: 20% 15% 0% 15%;
+        padding: 2.5% ;
+        position: absolute;
+        bottom: 7%;
+        width: 70%;
+        height: 2.5rem;
+    }
+
+    .footerlinks ul {
+        padding: 0px;
         text-align: center;
-        flex-direction: row; /* Display links in a single row */
-        gap: 20px; /* Adjust the spacing between the links */
-    }
-    
 
-    .left-header {
-        order: 2;
+
     }
 
-    .right-header {
-        order: 2;
+    .footerlinks li{
+        display:inline-block;
+        padding: 5px;
+        
+       
     }
 
-    .left-header a, .right-header a {
-        margin: 0 1px; /* Adjust the margin between the links */
+    .footerlinks a{
+        font-family: 'PT Mono', monospace;
+        color:black;
+        font-size: 15px;
+        text-decoration: none;
     }
 
-    .projects {
-        background: 
-            linear-gradient(rgba(0, 0, 0, 0.05) 2%, transparent 2%),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.05) 2%, transparent 2%);
-        background-size: 30px 30px;
-        width: 100%;
-        border-radius: 0%;
-        height: 70vh; /* Adjusted the height to make it centered */
-        margin: 2vh 0 0 0;
-    }
-
-    .ideas-list{
-        width: 100%;
-        padding:0 0 2vh 0;
-    }
-
-    .idea-icon {
-        width: 10vh;
-        height: 10vh;
-    }
-
-        /* Define the specific positions of each project using random values */
-    #project1 {
-        top: 0%;
-        right: 0%;
-    }
-
-    #project2 {
-        top: 0%;
-        right: 0%;
-    }
-
-
-    #project3 {
-        bottom: 0%;
-        left: 0%;
-    }
-
-    .projects {
-        border: none;
-    }
-
-    .tape{
-        display: none;
-    }
-
-    .slogan p {
-    font-size: 4vh;
-    padding: 0;
-    
-    }
-
-    
-    
-
-}
-
-
-
-
-
-  
-  
+  }
