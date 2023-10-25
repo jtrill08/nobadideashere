@@ -7,7 +7,6 @@ body {
     position: relative;
 }
 
-
 body::before {
     content: "";
     position: absolute;
@@ -163,17 +162,8 @@ a:hover {
 
 .subscribe-box {
     text-align: center;
-    padding: 20px;
-    margin: 10vh 15vh;
+    margin: 8vh 8vh;
 }
-
-#mc_embed_signup h2 {
-    font-weight: normal;
-    padding: 0;
-    margin: 15px 0;
-    font-size: 1.4em;
-}
-
 
 
 /* Add this CSS for smaller screens to stack the "info" text below the logo */
