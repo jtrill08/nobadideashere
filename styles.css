@@ -1,0 +1,196 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white; /* Whitish background */
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 30vh;
+    width: 65%;
+    height: 30vh; /* Adjust the height to control the size of the semi-circle */
+    background-color: rgb(255, 255, 203); /* Yellow background color */
+    border-radius: 50%; /* Creates a semi-circle shape */
+    filter: blur(20px); /* Adjust the blur as needed */
+    animation: changeColorsBefore 20s infinite;
+    z-index: -1;
+}
+
+@keyframes changeColorsBefore {
+    0%, 100% {
+        background-color: lightgoldenrodyellow; /* Start and end with yellow */
+    }
+    50% {
+        background-color: lavender; /* Transition to light red */
+    }
+}
+
+@keyframes changeColorsAfter {
+    0%, 100% {
+        background-color: lightblue; /* Start and end with light blue */
+    }
+    50% {
+        background-color: lightgreen; /* Transition to complementary color (light blue) */
+    }
+}
+body::after {
+    content: "";
+    position: absolute;
+    top: 5vh;
+    right: 0;
+    width: 35vh; /* Adjust the width to control the size of the circle */
+    height: 45vh; /* Adjust the height to control the size of the circle */
+    background-color: lightblue; /* Baby blue background color */
+    border-radius: 50%; /* Creates a circular shape */
+    filter: blur(20px); /* Adjust the blur as needed */
+    animation: changeColorsAfter 20s infinite;
+    z-index: -1;
+}
+
+
+header {
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    margin: 1vh;
+}
+
+#logo {
+    font-family: 'PT Mono', monospace;
+    font-size: 5.5vh;
+    font-weight:200;
+    margin-right: 10vh;
+    color: black;
+    white-space: nowrap;
+    text-decoration: none;
+    
+}
+
+#info {
+    font-family: 'inter' , sans-serif;
+    font-size: 3.5vh;
+    margin: 1vh;
+}
+
+#contact{
+    margin-right:1vh ;
+}
+
+#subscribe{
+    margin-right:1vh ;
+}
+
+#support{
+    margin-right:1vh ;
+}
+
+#info a {
+    color: black;
+}
+
+
+.title a{
+    color: black;
+}
+
+main {
+    margin: 0 auto; /* Center the main content horizontally */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
+    height: 80vh; /* Set a fixed height to make it centered */
+}
+
+#projects {
+    position: relative;
+    width: 100%;
+    white-space: nowrap; /* Prevent wrapping of child elements */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    height: 70vh;
+}
+
+
+.project-icon {
+    position: absolute;
+    height: auto;
+}
+
+
+.project-icon img {
+    max-width: 10vh;
+}
+
+/* Reduce the gap between the image and the text */
+.project-icon p {
+    margin: 0.1vh; /* You can adjust this value to your liking */
+}
+
+.project1 .category{
+    background-color: red;
+    color: white; /* Set the text color to contrast with the background */
+    display: inline-block; /* Make the background only as wide as the text */
+}
+
+.project2 .category{
+    background-color:red;
+    color: white; /* Set the text color to contrast with the background */
+    display: inline-block; /* Make the background only as wide as the text */
+}
+
+.project3 .category{
+    background-color: red;
+    color: white; /* Set the text color to contrast with the background */
+    display: inline-block; /* Make the background only as wide as the text */
+}
+
+a {
+    color: #0077b6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.subscribe-box {
+    text-align: center;
+    padding: 20px;
+    margin: 10vh 15vh;
+}
+
+#mc_embed_signup h2 {
+    font-weight: normal;
+    padding: 0;
+    margin: 15px 0;
+    font-size: 1.4em;
+}
+
+
+
+/* Add this CSS for smaller screens to stack the "info" text below the logo */
+@media (max-width: 768px) {
+    body {
+        overflow-y: hidden;
+    }
+    #logo {
+        margin-bottom: 1rem; /* Add margin at the bottom of the logo text */
+        margin: 2vh;
+    }
+
+    #info {
+        font-size: 2.5vh; /* Reduce font size for better mobile readability */
+        text-align: left; /* Center-align the text */
+    }
+
+    header {
+        flex-direction: column; /* Stack the logo and info vertically */
+    }
+}
