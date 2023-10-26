@@ -55,7 +55,7 @@ body::after {
 
 header {
     text-align: left;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     align-items: center;
     margin: 1vh;
@@ -75,7 +75,6 @@ header {
 #info {
     font-family: 'inter' , sans-serif;
     font-size: 3.5vh;
-    margin: 1vh;
 }
 
 #contact{
@@ -178,10 +177,13 @@ a:hover {
 
     #info {
         font-size: 2.5vh; /* Reduce font size for better mobile readability */
-        text-align: left; /* Center-align the text */
+        text-align: center; /* Center-align the text */
+        margin: 0 2vh;
     }
 
     header {
         flex-direction: column; /* Stack the logo and info vertically */
     }
+
+
 }
