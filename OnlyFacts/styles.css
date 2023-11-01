@@ -34,8 +34,9 @@ body::-webkit-scrollbar {
     margin-bottom: 2vh; /* Adjust this value to control the spacing */
     padding: 2vh;
     margin-top: 2.5vh;
+    max-width: 85%;
+    margin: 2.5vh auto 2vh auto;
 }
-
 
 /* Hide scrollbar for webkit-based browsers inside .fact-container */
 .fact-container::-webkit-scrollbar {
