@@ -17,8 +17,10 @@ async function fetchRandomFact(category, retryCount = 3) {
         }
 
         let apiUrl;
+
         if (category === 'Art') {
-            apiUrl = 'https://collectionapi.metmuseum.org/public/collection/v1/objects';
+            // Fetch art data from the Cleveland Museum of Art
+            apiUrl = 'https://openaccess-api.clevelandart.org/api/artworks/?format=json&has_image=1';
         } else {
             apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
         }
@@ -44,56 +46,29 @@ async function fetchRandomFact(category, retryCount = 3) {
 
         const data = await response.json();
 
-        if (category === 'Art' && data && data.objectIDs) {
-            const randomObjectID = data.objectIDs[Math.floor(Math.random() * data.objectIDs.length)];
-            const objectDetailResponse = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomObjectID}`);
-            const objectDetailData = await objectDetailResponse.json();
+        if (category === 'Art' && data.data) {
+            // Randomly select an artwork from the fetched data
+            const randomIndex = Math.floor(Math.random() * data.data.length);
+            const randomArtwork = data.data[randomIndex];
 
-            if (objectDetailData && objectDetailData.primaryImageSmall) {
-                const title = objectDetailData.title || '';
-                const name = objectDetailData.artistDisplayName || '';
-                const date = objectDetailData.objectDate || '';
-                const medium = objectDetailData.medium || '';
-                const description = objectDetailData.objectName || '';
-                const culture = objectDetailData.culture || '';
-            
-                let extract = '';
-            
-                if (title) {
-                    extract += `Title: ${title} , \n`;
-                }
-            
-                if (name) {
-                    extract += `Name: ${name}\n`;
-                }
-            
-                if (date) {
-                    extract += `Date: ${date}\n`;
-                }
-            
-                if (medium) {
-                    extract += `Medium: ${medium}\n`;
-                }
-            
-                if (description) {
-                    extract += `Description: ${description}\n`;
-                }
-            
-                if (culture) {
-                    extract += `Culture: ${culture}\n`;
-                }
-            
-                console.log(`Included: ${title} (Art)`);
+            // Fetch detailed information about the selected artwork
+            const artworkInfoResponse = await fetch(`https://openaccess-api.clevelandart.org/api/artworks/${randomArtwork.id}`);
+            const artworkInfoData = await artworkInfoResponse.json();
+
+            if (artworkInfoData.data) {
+                const title = artworkInfoData.data.title || '';
+                const artist = artworkInfoData.data.creators ? artworkInfoData.data.creators[0].description : 'Unknown Artist';
+                const date = artworkInfoData.data.creation_date || '';
+                const medium = artworkInfoData.data.type || '';
+                const description = artworkInfoData.data.description || '';
+                
+
                 return {
-                    extract,
-                    image: objectDetailData.primaryImageSmall
+                    extract: `Title: ${title}\nArtist: ${artist}\nDate: ${date}\nMedium: ${medium}\nDescription: ${description}\n`,
+                    image: artworkInfoData.data.images.web.url || null
                 };
             }
-            
-
-            console.log('Invalid data received from the API: Missing image');
-            return await fetchRandomFact(category, retryCount - 1);
-        } else if (category !== 'Art' && data && data.extract) {
+        } else if (category !== 'Art' && data.extract) {
             if (category && !containsInterestingKeyword(data.extract, category)) {
                 console.log(`Excluded: ${data.title} (${category})`);
                 return await fetchRandomFact(category, retryCount - 1);
@@ -115,6 +90,7 @@ async function fetchRandomFact(category, retryCount = 3) {
         return { extract: '', image: null };
     }
 }
+
 
 
 
@@ -158,7 +134,7 @@ function containsInterestingKeyword(fact, category) {
             'equations',"Gauss's Law for Electricity","Faraday's Law ", "Ohm's Law","Coulomb's Law",
             'Theromodynamics','law of energy','law of energy conservation','chemical reaction','biology experiment',
             'covalent bond', 'ionic bonding','electrons','molecules','periodic table','polymers',
-            'Law of Conservation','gravity','law of universal gravitation','law of motion', 'chemical compound', 'compound' ],
+            'Law of Conservation','gravity','law of universal gravitation','law of motion', 'chemical compound', 'compound'  ],
         'Geography': [
             'geography', 'places', 'earth', 'province','bodies of water',
             'cities', 'continents', 'country', 'deserts',
@@ -237,6 +213,8 @@ function containsInterestingKeyword(fact, category) {
     return false;
 }
 
+
+
 function createFactCard(factData, isLoading = false) {
     const factElement = document.createElement('div');
     factElement.classList.add('fact-card');
@@ -270,13 +248,16 @@ function createFactCard(factData, isLoading = false) {
 const textContentDiv = document.createElement('div');
 textContentDiv.textContent = factData.extract; // Set the textContent property
 
-// Apply CSS to make sure line breaks are displayed
-textContentDiv.style.whiteSpace = 'pre-line';
+
 
 textContentDiv.classList.add('fact-text'); // Add a class for styling if needed
 
 if (filterCategory === 'Art') {
     textContentDiv.style.textAlign = 'left'; // Apply text-align: justify for the "Art" section
+    // Apply CSS to make sure line breaks are displayed with space gaps
+textContentDiv.style.whiteSpace = 'pre-line';
+textContentDiv.style.lineHeight = '1.3'; // You can adjust the value to control the spacing (e.g., '1.5' for 1.5 times the font size)
+
 }
 // Append the text content div to the fact card
 factElement.appendChild(textContentDiv);
