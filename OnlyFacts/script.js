@@ -2,7 +2,6 @@ const factContainer = document.getElementById('fact-container');
 const categoryButtons = document.querySelectorAll('.category-button');
 let filterCategory = null; // Initialize with no filter
 let isLoadingFacts = false;
-
 const facts = [];
 let currentFactIndex = 0;
 const factsPerPage = 10; // Number of facts to load at once
@@ -13,27 +12,21 @@ async function fetchRandomFact(category, retryCount = 3) {
     try {
         // Cancel any ongoing fetch when the category changes
         if (abortController.signal.aborted) {
-            return { extract: '', image: null };
+            return { extract: '', image: null }; // Return empty data
         }
 
-        let apiUrl;
-
-        if (category === 'Art') {
-            // Fetch art data from the Cleveland Museum of Art
-            apiUrl = 'https://openaccess-api.clevelandart.org/api/artworks/?format=json&has_image=1';
-        } else {
-            apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
-        }
+        let apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
 
         const response = await fetch(apiUrl, { signal: abortController.signal });
 
         if (!response.ok) {
             if (response.status === 404) {
+                // Handle the 404 error gracefully and continue to the next fact
                 console.log('404 error encountered. Skipping to the next fact.');
                 return await fetchRandomFact(category);
-            } else if (response.status === 429) {
+            } else if (response.status === 429) { // Rate limit exceeded
                 if (retryCount > 0) {
-                    const retryDelay = Math.pow(2, 4 - retryCount) * 1000;
+                    const retryDelay = Math.pow(2, 4 - retryCount) * 1000; // Exponential backoff
                     await new Promise(resolve => setTimeout(resolve, retryDelay));
                     return await fetchRandomFact(category, retryCount - 1);
                 } else {
@@ -43,35 +36,17 @@ async function fetchRandomFact(category, retryCount = 3) {
                 throw new Error(`API request failed with status: ${response.status}`);
             }
         }
+        
 
         const data = await response.json();
 
-        if (category === 'Art' && data.data) {
-            // Randomly select an artwork from the fetched data
-            const randomIndex = Math.floor(Math.random() * data.data.length);
-            const randomArtwork = data.data[randomIndex];
-
-            // Fetch detailed information about the selected artwork
-            const artworkInfoResponse = await fetch(`https://openaccess-api.clevelandart.org/api/artworks/${randomArtwork.id}`);
-            const artworkInfoData = await artworkInfoResponse.json();
-
-            if (artworkInfoData.data) {
-                const title = artworkInfoData.data.title || '';
-                const artist = artworkInfoData.data.creators ? artworkInfoData.data.creators[0].description : 'Unknown Artist';
-                const date = artworkInfoData.data.creation_date || '';
-                const medium = artworkInfoData.data.type || '';
-                const description = artworkInfoData.data.description || '';
-                
-
-                return {
-                    extract: `Title: ${title}\nArtist: ${artist}\nDate: ${date}\nMedium: ${medium}\nDescription: ${description}\n`,
-                    image: artworkInfoData.data.images.web.url || null
-                };
-            }
-        } else if (category !== 'Art' && data.extract) {
+        if (data && data.extract) {
             if (category && !containsInterestingKeyword(data.extract, category)) {
                 console.log(`Excluded: ${data.title} (${category})`);
-                return await fetchRandomFact(category, retryCount - 1);
+                // Retry fetching another fact, up to a maximum of retryCount times
+                if (retryCount > 0) {
+                    return await fetchRandomFact(category, retryCount - 1);
+                }
             } else {
                 console.log(`Included: ${data.title} (${category})`);
                 return {
@@ -80,19 +55,19 @@ async function fetchRandomFact(category, retryCount = 3) {
                 };
             }
         } else {
-            console.log('Fact skipped because it has no data.');
-            return await fetchRandomFact(category, retryCount - 1);
+            console.error('Invalid data received from the API:', data);
+            // Retry fetching another fact, up to a maximum of retryCount times
+            if (retryCount > 0) {
+                return await fetchRandomFact(category, retryCount - 1);
+            }
         }
     } catch (error) {
         if (!abortController.signal.aborted) {
             console.error('Error fetching data:', error);
         }
-        return { extract: '', image: null };
+        return { extract: '', image: null }; // Return empty data
     }
 }
-
-
-
 
 
 
@@ -134,7 +109,7 @@ function containsInterestingKeyword(fact, category) {
             'equations',"Gauss's Law for Electricity","Faraday's Law ", "Ohm's Law","Coulomb's Law",
             'Theromodynamics','law of energy','law of energy conservation','chemical reaction','biology experiment',
             'covalent bond', 'ionic bonding','electrons','molecules','periodic table','polymers',
-            'Law of Conservation','gravity','law of universal gravitation','law of motion', 'chemical compound', 'compound'  ],
+            'Law of Conservation','gravity','law of universal gravitation','law of motion',  ],
         'Geography': [
             'geography', 'places', 'earth', 'province','bodies of water',
             'cities', 'continents', 'country', 'deserts',
@@ -213,8 +188,6 @@ function containsInterestingKeyword(fact, category) {
     return false;
 }
 
-
-
 function createFactCard(factData, isLoading = false) {
     const factElement = document.createElement('div');
     factElement.classList.add('fact-card');
@@ -244,24 +217,9 @@ function createFactCard(factData, isLoading = false) {
         factElement.appendChild(messageContainer);    
     } else {
         // Create a div for the text content
-// Inside your createFactCard function where you create the textContentDiv:
-const textContentDiv = document.createElement('div');
-textContentDiv.textContent = factData.extract; // Set the textContent property
-
-
-
-textContentDiv.classList.add('fact-text'); // Add a class for styling if needed
-
-if (filterCategory === 'Art') {
-    textContentDiv.style.textAlign = 'left'; // Apply text-align: justify for the "Art" section
-    // Apply CSS to make sure line breaks are displayed with space gaps
-textContentDiv.style.whiteSpace = 'pre-line';
-textContentDiv.style.lineHeight = '1.3'; // You can adjust the value to control the spacing (e.g., '1.5' for 1.5 times the font size)
-
-}
-// Append the text content div to the fact card
-factElement.appendChild(textContentDiv);
-
+        const textContentDiv = document.createElement('div');
+        textContentDiv.textContent = factData.extract;
+        textContentDiv.classList.add('fact-text'); // Add a class for styling if needed
 
         // Append the text content div to the fact card
         factElement.appendChild(textContentDiv);
